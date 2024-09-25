@@ -1,0 +1,126 @@
+local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/ChimeraLle/proohio_lib/refs/heads/main/source"))()
+
+local plrs = game:GetService("Players")
+local mainplr = plrs.LocalPlayer
+local mainchar = mainplr.Character or mainplr.CharacterAdded:Wait()
+local mainhum = mainchar:FindFirstChildWhichIsA("Humanoid")
+
+lib.CreateWindow("Proohio Hat Orbit")
+
+lib.CreateTab("rbxassetid://10218885502")
+
+local Target = mainplr.Name
+local Orbit = false
+local orbitSpeed = 1
+local orbitRadius = 10
+local orbitParts = {}
+local angles = {}
+local phaseShift = 360 / #orbitParts
+
+local function GetHeadByUsingName(Name)
+	for _, plr in ipairs(plrs:GetPlayers()) do
+		if plr.Name == Name then
+			local char = plr.Character or plr.CharacterAdded:Wait()
+			local head = char:FindFirstChild("Head")
+			if head then
+				return head
+			else
+				print("Bro's Is Alien")
+			end
+		end
+	end
+	print("Target Player Leaved The Game!")
+	return nil
+end
+
+local function StartOrbit()
+	if not Orbit then return end
+	while Orbit do
+		
+		mainhum.Health = 0
+		
+		task.wait()
+
+		local centerPart = GetHeadByUsingName(Target)
+
+		if not centerPart then
+			return
+		end
+		
+		for i, orbitPart in ipairs(orbitParts) do
+			if orbitPart.Parent then
+				angles[i] = angles[i] + orbitSpeed
+				local newCFrame = CFrame.new(centerPart.Position) * CFrame.Angles(0, math.rad(angles[i]), 0) * CFrame.new(orbitRadius, 0, 0)
+				orbitPart.CFrame = newCFrame
+			end
+		end
+		
+	end
+
+	return
+end
+
+lib.CreateToggle({"Orbit", false, function(Boolean)
+	Orbit = Boolean
+	StartOrbit()
+end})
+
+lib.CreateInput({"Target", function(input)
+	if plrs:FindFirstChild(input) then
+		Target = input
+		StartOrbit()
+	else
+		print("Player Doesnt Found!")
+	end
+end})
+
+lib.CreateInput({"Speed (1 is normal)", function(input)
+	if tonumber(input) then
+		orbitSpeed = input
+	else
+		print("Type Number not smth")
+	end
+end})
+
+lib.CreateInput({"Radius (10 is normal)", function(input)
+	if tonumber(input) then
+		orbitRadius = input
+	else
+		print("Type Number not smth")
+	end
+end})
+
+local function OnCharAdded(char)
+
+	mainchar = char
+
+	local hum = char:FindFirstChildWhichIsA("Humanoid")
+
+	if hum then
+		mainhum = hum
+	else
+		print("You're Not Human!")
+	end
+
+	orbitParts = {}
+
+	for i, v in ipairs(char:GetChildren()) do
+		if v:IsA("Accessory") then
+			local Handle = v:FindFirstChild("Handle")
+			if Handle then
+				table.insert(orbitParts, Handle)
+			end
+		end
+	end
+	
+	phaseShift = 360 / #orbitParts
+	
+	angles = {}
+
+	for i = 1, #orbitParts do
+		angles[i] = phaseShift * (i - 1)
+	end
+end
+
+mainplr.CharacterAdded:Connect(OnCharAdded)
+OnCharAdded(mainchar)
