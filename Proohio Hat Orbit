@@ -36,9 +36,9 @@ end
 local function StartOrbit()
 	if not Orbit then return end
 	while Orbit do
-		
+
 		mainhum.Health = 0
-		
+
 		task.wait()
 
 		local centerPart = GetHeadByUsingName(Target)
@@ -46,7 +46,7 @@ local function StartOrbit()
 		if not centerPart then
 			return
 		end
-		
+
 		for i, orbitPart in ipairs(orbitParts) do
 			if orbitPart.Parent then
 				angles[i] = angles[i] + orbitSpeed
@@ -54,7 +54,7 @@ local function StartOrbit()
 				orbitPart.CFrame = newCFrame
 			end
 		end
-		
+
 	end
 
 	return
@@ -93,16 +93,23 @@ end})
 local function OnCharAdded(char)
 
 	mainchar = char
+	
+	wait()
 
-	local hum = char:FindFirstChildWhichIsA("Humanoid")
+	local hum = mainchar:FindFirstChildWhichIsA("Humanoid")
 
-	if hum then
-		mainhum = hum
-	else
-		print("You're Not Human!")
+	if not hum then
+		while not hum do
+			hum = mainchar:FindFirstChildWhichIsA("Humanoid")
+			task.wait()
+		end
 	end
-
+	
+	mainhum = hum
+	
 	orbitParts = {}
+	
+	wait()
 
 	for i, v in ipairs(char:GetChildren()) do
 		if v:IsA("Accessory") then
@@ -112,9 +119,9 @@ local function OnCharAdded(char)
 			end
 		end
 	end
-	
+
 	phaseShift = 360 / #orbitParts
-	
+
 	angles = {}
 
 	for i = 1, #orbitParts do
