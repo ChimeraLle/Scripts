@@ -1,9 +1,13 @@
 local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/ChimeraLle/proohio_lib/refs/heads/main/source"))()
-
 local plrs = game:GetService("Players")
 local mainplr = plrs.LocalPlayer
 local mainchar = mainplr.Character or mainplr.CharacterAdded:Wait()
-local mainhum = mainchar:FindFirstChildWhichIsA("Humanoid")
+
+local uis = game:GetService("UserInputService")
+local M = mainplr:GetMouse()
+
+local Cg = game:GetService("CoreGui")
+local cam = workspace.CurrentCamera
 
 lib.CreateWindow("Proohio Hat Orbit")
 
@@ -37,7 +41,7 @@ local function StartOrbit()
 	if not Orbit then return end
 	while Orbit do
 
-		mainhum.Health = 0
+		mainchar:BreakJoints()
 
 		task.wait()
 
@@ -60,6 +64,42 @@ local function StartOrbit()
 	return
 end
 
+local Selecting = true
+local Selected = nil
+
+local function OnSelecting()
+	while Selecting do
+		local Tar = M.Target
+		local high
+		if Tar then
+			local Par = Tar.Parent
+			if Par:IsA("Model") and not Par:IsA("Workspace") then
+				if plrs:GetPlayerFromCharacter(Par) then
+					high = Instance.new("Highlight", Cg)
+					high.Adornee = Par
+					high.FillColor = Color3.new(1,1,1)
+					high.FillTransparency = 0.9
+
+					Selected = Par
+				end
+			end
+		end
+		task.wait()
+		if high then
+			high:Destroy()
+		end
+	end
+end
+
+uis.InputBegan:Connect(function(inp)
+	if inp.UserInputType == Enum.UserInputType.MouseButton1 and Selecting then
+		Selecting = false
+		if Selected then
+			Target = Selected.Name
+		end
+	end
+end)
+
 lib.CreateToggle({"Orbit", false, function(Boolean)
 	Orbit = Boolean
 	StartOrbit()
@@ -72,6 +112,11 @@ lib.CreateInput({"Target", function(input)
 	else
 		print("Player Doesnt Found!")
 	end
+end})
+
+lib.CreateButton({"Click To Select", function()
+	Selecting = not Selecting
+	OnSelecting()
 end})
 
 lib.CreateInput({"Speed (1 is normal)", function(input)
@@ -94,22 +139,9 @@ local function OnCharAdded(char)
 
 	mainchar = char
 	
-	wait()
+	mainplr.CharacterAppearanceLoaded:Wait()
 
-	local hum = mainchar:FindFirstChildWhichIsA("Humanoid")
-
-	if not hum then
-		while not hum do
-			hum = mainchar:FindFirstChildWhichIsA("Humanoid")
-			task.wait()
-		end
-	end
-	
-	mainhum = hum
-	
 	orbitParts = {}
-	
-	wait()
 
 	for i, v in ipairs(char:GetChildren()) do
 		if v:IsA("Accessory") then
@@ -127,6 +159,7 @@ local function OnCharAdded(char)
 	for i = 1, #orbitParts do
 		angles[i] = phaseShift * (i - 1)
 	end
+
 end
 
 mainplr.CharacterAdded:Connect(OnCharAdded)
