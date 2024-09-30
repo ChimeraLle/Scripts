@@ -138,8 +138,6 @@ end})
 local function OnCharAdded(char)
 
 	mainchar = char
-	
-	mainplr.CharacterAppearanceLoaded:Wait()
 
 	orbitParts = {}
 
@@ -162,5 +160,5 @@ local function OnCharAdded(char)
 
 end
 
-mainplr.CharacterAdded:Connect(OnCharAdded)
+mainplr.CharacterAppearanceLoaded:Connect(OnCharAdded)
 OnCharAdded(mainchar)
