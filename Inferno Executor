@@ -1,0 +1,819 @@
+if not game:IsLoaded() then
+	game.Loaded:Wait()
+end
+
+-- Services
+
+local Rs = game:GetService("RunService")
+local uis = game:GetService("UserInputService")
+local CoreGui = game:GetService("CoreGui")
+
+-- Script
+
+local Inferno = CoreGui:FindFirstChild("Inferno")
+
+if not Inferno then
+	LoadGuis()
+end
+
+function LoadGuis()
+	
+	-- Instances
+	
+	local ScreenGui = Instance.new("ScreenGui")
+	local Window = Instance.new("Frame")
+	local TopBar = Instance.new("Frame")
+	local Icon = Instance.new("ImageLabel")
+	local AppName = Instance.new("TextLabel")
+	local UIPadding = Instance.new("UIPadding")
+	local Close = Instance.new("TextButton")
+	local UIPadding_2 = Instance.new("UIPadding")
+	local Main = Instance.new("Frame")
+	local ScrollingFrame = Instance.new("ScrollingFrame")
+	local TextBox = Instance.new("TextBox")
+	local UIPadding_3 = Instance.new("UIPadding")
+	local Keyword = Instance.new("TextLabel")
+	local Number = Instance.new("TextLabel")
+	local String = Instance.new("TextLabel")
+	local builtin = Instance.new("TextLabel")
+	local builtin2 = Instance.new("TextLabel")
+	local Buttons = Instance.new("Frame")
+	local B = Instance.new("TextButton")
+	local UIPadding_4 = Instance.new("UIPadding")
+	local A = Instance.new("TextButton")
+	local UIPadding_5 = Instance.new("UIPadding")
+	local UIListLayout = Instance.new("UIListLayout")
+	local TabsFolder = Instance.new("ScrollingFrame")
+	local UIListLayout_2 = Instance.new("UIListLayout")
+	local Add = Instance.new("TextButton")
+	local UIPadding_6 = Instance.new("UIPadding")
+	local Remove = Instance.new("TextButton")
+	local UIPadding_7 = Instance.new("UIPadding")
+	local Tab = Instance.new("TextButton")
+	local UIPadding_8 = Instance.new("UIPadding")
+
+	-- Properties
+
+	ScreenGui.Parent = CoreGui
+	ScreenGui.Name = "Inferno"
+	ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	ScreenGui.ResetOnSpawn = false
+	ScreenGui.IgnoreGuiInset = true
+
+	Window.Name = "Window"
+	Window.Parent = ScreenGui
+	Window.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Window.BackgroundTransparency = 1.000
+	Window.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	Window.BorderSizePixel = 0
+	Window.Position = UDim2.new(0, 100, 0, 10)
+	Window.Size = UDim2.new(0, 550, 0, 300)
+
+	TopBar.Name = "TopBar"
+	TopBar.Parent = Window
+	TopBar.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+	TopBar.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	TopBar.BorderSizePixel = 0
+	TopBar.Size = UDim2.new(1, 0, 0, 40)
+
+	Icon.Name = "Icon"
+	Icon.Parent = TopBar
+	Icon.BackgroundColor3 = Color3.fromRGB(36, 37, 39)
+	Icon.BackgroundTransparency = 1.000
+	Icon.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	Icon.BorderSizePixel = 0
+	Icon.Size = UDim2.new(0, 40, 0, 40)
+	Icon.Image = "rbxassetid://138152479977630"
+	Icon.ImageRectSize = Vector2.new(200, 200)
+	Icon.ScaleType = Enum.ScaleType.Fit
+
+	AppName.Name = "AppName"
+	AppName.Parent = TopBar
+	AppName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	AppName.BackgroundTransparency = 1.000
+	AppName.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	AppName.BorderSizePixel = 0
+	AppName.Position = UDim2.new(0, 40, 0, 0)
+	AppName.Size = UDim2.new(0, 0, 0, 40)
+	AppName.Font = Enum.Font.RobotoMono
+	AppName.Text = "Inferno"
+	AppName.TextColor3 = Color3.fromRGB(255, 255, 255)
+	AppName.TextScaled = true
+	AppName.TextSize = 14.000
+	AppName.TextWrapped = true
+	AppName.AutomaticSize = Enum.AutomaticSize.X
+
+	UIPadding.Parent = AppName
+	UIPadding.PaddingBottom = UDim.new(0, 10)
+	UIPadding.PaddingLeft = UDim.new(0, 10)
+	UIPadding.PaddingRight = UDim.new(0, 10)
+	UIPadding.PaddingTop = UDim.new(0, 10)
+
+	Close.Name = "Close"
+	Close.Parent = TopBar
+	Close.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+	Close.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	Close.BorderSizePixel = 0
+	Close.Position = UDim2.new(1, -40, 0.125, 0)
+	Close.Size = UDim2.new(0, 30, 0, 30)
+	Close.Text = "X"
+	Close.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Close.TextScaled = true
+	Close.TextWrapped = true
+
+	UIPadding_2.Parent = Close
+	UIPadding_2.PaddingBottom = UDim.new(0, 7)
+	UIPadding_2.PaddingLeft = UDim.new(0, 7)
+	UIPadding_2.PaddingRight = UDim.new(0, 7)
+	UIPadding_2.PaddingTop = UDim.new(0, 7)
+
+	Main.Name = "Main"
+	Main.Parent = Window
+	Main.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+	Main.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	Main.BorderSizePixel = 0
+	Main.Position = UDim2.new(0, 0, 0, 40)
+	Main.Size = UDim2.new(1, 0, 1, -40)
+	
+	ScrollingFrame.Parent = Main
+	ScrollingFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+	ScrollingFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	ScrollingFrame.BorderSizePixel = 0
+	ScrollingFrame.Position = UDim2.new(0, 10, 0, 45)
+	ScrollingFrame.Size = UDim2.new(1, -20, 1, -90)
+	ScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
+	ScrollingFrame.AutomaticCanvasSize = Enum.AutomaticSize.XY
+	ScrollingFrame.ScrollBarThickness = 18
+	ScrollingFrame.BottomImage = ScrollingFrame.MidImage
+	ScrollingFrame.TopImage = ScrollingFrame.MidImage
+
+	TextBox.Parent = ScrollingFrame
+	TextBox.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+	TextBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	TextBox.BorderSizePixel = 0
+	TextBox.Position = UDim2.new(0, 0, 0, 0)
+	TextBox.Size = UDim2.new(1, 0, 1, 0)
+	TextBox.ClearTextOnFocus = false
+	TextBox.Font = Enum.Font.Code
+	TextBox.MultiLine = true
+	TextBox.PlaceholderColor3 = Color3.fromRGB(204, 204, 204)
+	TextBox.Text = ""
+	TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+	TextBox.TextSize = 18.000
+	TextBox.TextWrapped = true
+	TextBox.TextXAlignment = Enum.TextXAlignment.Left
+	TextBox.TextYAlignment = Enum.TextYAlignment.Top
+	TextBox.AutomaticSize = Enum.AutomaticSize.XY
+
+	UIPadding_3.Parent = TextBox
+	UIPadding_3.PaddingBottom = UDim.new(0, 5)
+	UIPadding_3.PaddingLeft = UDim.new(0, 10)
+	UIPadding_3.PaddingRight = UDim.new(0, 10)
+	UIPadding_3.PaddingTop = UDim.new(0, 5)
+
+	Keyword.Name = "Keyword"
+	Keyword.Parent = TextBox
+	Keyword.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Keyword.BackgroundTransparency = 1.000
+	Keyword.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	Keyword.BorderSizePixel = 0
+	Keyword.Size = UDim2.new(1, 0, 1, 0)
+	Keyword.Font = Enum.Font.Code
+	Keyword.Text = ""
+	Keyword.TextColor3 = Color3.fromRGB(248, 109, 124)
+	Keyword.TextSize = 18.000
+	Keyword.TextXAlignment = Enum.TextXAlignment.Left
+	Keyword.TextYAlignment = Enum.TextYAlignment.Top
+
+	Number.Name = "Number"
+	Number.Parent = TextBox
+	Number.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Number.BackgroundTransparency = 1.000
+	Number.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	Number.BorderSizePixel = 0
+	Number.Size = UDim2.new(1, 0, 1, 0)
+	Number.ZIndex = 2
+	Number.Font = Enum.Font.Code
+	Number.Text = ""
+	Number.TextColor3 = Color3.fromRGB(255, 198, 0)
+	Number.TextSize = 18.000
+	Number.TextXAlignment = Enum.TextXAlignment.Left
+	Number.TextYAlignment = Enum.TextYAlignment.Top
+
+	String.Name = "String"
+	String.Parent = TextBox
+	String.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	String.BackgroundTransparency = 1.000
+	String.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	String.BorderSizePixel = 0
+	String.Size = UDim2.new(1, 0, 1, 0)
+	String.Font = Enum.Font.Code
+	String.Text = ""
+	String.TextColor3 = Color3.fromRGB(173, 241, 149)
+	String.TextSize = 18.000
+	String.TextXAlignment = Enum.TextXAlignment.Left
+	String.TextYAlignment = Enum.TextYAlignment.Top
+
+	builtin.Name = "builtin"
+	builtin.Parent = TextBox
+	builtin.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	builtin.BackgroundTransparency = 1.000
+	builtin.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	builtin.BorderSizePixel = 0
+	builtin.Size = UDim2.new(1, 0, 1, 0)
+	builtin.Font = Enum.Font.Code
+	builtin.Text = ""
+	builtin.TextColor3 = Color3.fromRGB(132, 214, 247)
+	builtin.TextSize = 18.000
+	builtin.TextXAlignment = Enum.TextXAlignment.Left
+	builtin.TextYAlignment = Enum.TextYAlignment.Top
+
+	builtin2.Name = "builtin2"
+	builtin2.Parent = TextBox
+	builtin2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	builtin2.BackgroundTransparency = 1.000
+	builtin2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	builtin2.BorderSizePixel = 0
+	builtin2.Size = UDim2.new(1, 0, 1, 0)
+	builtin2.Font = Enum.Font.Code
+	builtin2.Text = ""
+	builtin2.TextColor3 = Color3.fromRGB(132, 214, 247)
+	builtin2.TextSize = 18.000
+	builtin2.TextXAlignment = Enum.TextXAlignment.Left
+	builtin2.TextYAlignment = Enum.TextYAlignment.Top
+
+	Buttons.Name = "Buttons"
+	Buttons.Parent = Main
+	Buttons.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Buttons.BackgroundTransparency = 1.000
+	Buttons.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	Buttons.BorderSizePixel = 0
+	Buttons.Position = UDim2.new(0, 10, 1, -35)
+	Buttons.Size = UDim2.new(1, -20, 0, 25)
+
+	B.Name = "B"
+	B.Parent = Buttons
+	B.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+	B.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	B.BorderSizePixel = 0
+	B.Position = UDim2.new(0, 120, 1, -35)
+	B.Size = UDim2.new(0, 0, 0, 25)
+	B.Font = Enum.Font.RobotoMono
+	B.Text = " Clear "
+	B.TextColor3 = Color3.fromRGB(255, 255, 255)
+	B.TextScaled = true
+	B.TextSize = 14.000
+	B.TextWrapped = true
+	B.AutomaticSize = Enum.AutomaticSize.X
+
+	UIPadding_4.Parent = B
+	UIPadding_4.PaddingBottom = UDim.new(0, 2)
+	UIPadding_4.PaddingLeft = UDim.new(0, 2)
+	UIPadding_4.PaddingRight = UDim.new(0, 2)
+	UIPadding_4.PaddingTop = UDim.new(0, 2)
+
+	A.Name = "A"
+	A.Parent = Buttons
+	A.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+	A.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	A.BorderSizePixel = 0
+	A.Position = UDim2.new(0, 10, 1, -35)
+	A.Size = UDim2.new(0, 0, 0, 25)
+	A.Font = Enum.Font.RobotoMono
+	A.Text = " Execute "
+	A.TextColor3 = Color3.fromRGB(255, 255, 255)
+	A.TextScaled = true
+	A.TextSize = 14.000
+	A.TextWrapped = true
+	A.AutomaticSize = Enum.AutomaticSize.X
+
+	UIPadding_5.Parent = A
+	UIPadding_5.PaddingBottom = UDim.new(0, 2)
+	UIPadding_5.PaddingLeft = UDim.new(0, 2)
+	UIPadding_5.PaddingRight = UDim.new(0, 2)
+	UIPadding_5.PaddingTop = UDim.new(0, 2)
+
+	UIListLayout.Parent = Buttons
+	UIListLayout.FillDirection = Enum.FillDirection.Horizontal
+	UIListLayout.Padding = UDim.new(0, 10)
+
+	TabsFolder.Name = "Tabs"
+	TabsFolder.Parent = Main
+	TabsFolder.Active = true
+	TabsFolder.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+	TabsFolder.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	TabsFolder.BorderSizePixel = 0
+	TabsFolder.Position = UDim2.new(0, 80, 0, 10)
+	TabsFolder.Size = UDim2.new(1, -90, 0, 25)
+	TabsFolder.CanvasSize = UDim2.new(0, 0, 0, 0)
+	TabsFolder.ScrollBarThickness = 0
+
+	UIListLayout_2.Parent = TabsFolder
+	UIListLayout_2.FillDirection = Enum.FillDirection.Horizontal
+
+	Add.Name = "Add"
+	Add.Parent = Main
+	Add.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+	Add.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	Add.BorderSizePixel = 0
+	Add.Position = UDim2.new(0, 10, 0, 10)
+	Add.Size = UDim2.new(0, 25, 0, 25)
+	Add.Text = "+"
+	Add.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Add.TextScaled = true
+	Add.TextWrapped = true
+
+	UIPadding_6.Parent = Add
+	UIPadding_6.PaddingBottom = UDim.new(0, 2)
+	UIPadding_6.PaddingLeft = UDim.new(0, 2)
+	UIPadding_6.PaddingRight = UDim.new(0, 2)
+	UIPadding_6.PaddingTop = UDim.new(0, 2)
+
+	Remove.Name = "Remove"
+	Remove.Parent = Main
+	Remove.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+	Remove.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	Remove.BorderSizePixel = 0
+	Remove.Position = UDim2.new(0, 45, 0, 10)
+	Remove.Size = UDim2.new(0, 25, 0, 25)
+	Remove.Text = "-"
+	Remove.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Remove.TextScaled = true
+	Remove.TextWrapped = true
+
+	UIPadding_7.Parent = Remove
+	UIPadding_7.PaddingBottom = UDim.new(0, 2)
+	UIPadding_7.PaddingLeft = UDim.new(0, 2)
+	UIPadding_7.PaddingRight = UDim.new(0, 2)
+	UIPadding_7.PaddingTop = UDim.new(0, 2)
+
+	Tab.Name = "Tab"
+	Tab.Parent = Window
+	Tab.BackgroundColor3 = Color3.fromRGB(103, 136, 255)
+	Tab.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	Tab.BorderSizePixel = 0
+	Tab.Size = UDim2.new(0, 0, 0, 25)
+	Tab.Visible = false
+	Tab.Font = Enum.Font.RobotoMono
+	Tab.Text = "Tab 1"
+	Tab.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Tab.TextScaled = true
+	Tab.TextSize = 14.000
+	Tab.TextWrapped = true
+	Tab.AutomaticSize = Enum.AutomaticSize.X
+
+	UIPadding_8.Parent = Tab
+	UIPadding_8.PaddingBottom = UDim.new(0, 2)
+	UIPadding_8.PaddingLeft = UDim.new(0, 7)
+	UIPadding_8.PaddingRight = UDim.new(0, 7)
+	UIPadding_8.PaddingTop = UDim.new(0, 2)
+
+	-- Variables
+
+	local Tabs = {}
+
+	local CurrentTab = {
+		Deleted = true,
+		position = nil,
+		object = nil,
+		Source = ""
+	}
+
+	-- Script
+
+	local function GetName(num)
+		if num then
+			local length = #tostring(num)
+			if length == 1 then
+				return "00000" .. num
+			elseif length == 2 then
+				return "0000" .. num
+			elseif length == 3 then
+				return "000" .. num
+			elseif length == 4 then
+				return "00" .. num
+			elseif length == 5 then
+				return "0" .. num
+			end
+		end
+
+		return num
+	end
+
+	local function FindDeletedLowestPosition()
+		local lowest = nil
+		for i, v in ipairs(Tabs) do
+			if v.Deleted == true then
+				if lowest == nil then
+					lowest = v.position
+				elseif v.position < lowest then
+					lowest = v.position
+				end
+			end
+		end
+		if lowest == nil then
+			lowest = #Tabs + 1
+		end
+		return lowest
+	end
+
+	local function RandomSelectTab()
+		for i, v in ipairs(Tabs) do
+			if v.Deleted == false then
+				return v.position
+			end
+		end
+	end
+
+	local function SelectTab(Pos)
+		for i, v in ipairs(Tabs) do
+			if v.Deleted == false then
+				if i == Pos then
+					v.object.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+					CurrentTab = v
+					if CurrentTab.Source ~= "" then
+						TextBox.Text = CurrentTab.Source
+					else
+						TextBox.Text = "print(\"Hello world!\")"
+					end
+				else
+					v.object.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+				end
+			end
+		end
+	end
+
+	local function AddTab()
+
+		if CurrentTab then
+			if CurrentTab.Deleted == false then
+				Tabs[CurrentTab.position].source = TextBox.Text
+			end
+		end
+
+		local ii = FindDeletedLowestPosition()
+
+		local new = Tab:Clone()
+		new.Name = GetName(ii)
+		new.Text = "Tab "..ii
+		new.Parent = TabsFolder
+		new.Visible = true
+
+		local savedii = ii
+
+		Tabs[ii] = {
+			Deleted = false,
+			position = ii,
+			object = new,
+			Source = ""
+		}
+
+		new.MouseButton1Up:Connect(function()
+			SelectTab(savedii)
+		end)
+
+		SelectTab(ii)
+	end
+
+	local function RemTab()
+		if CurrentTab.Deleted == false and CurrentTab.position > 1 then
+			CurrentTab.Deleted = true
+			CurrentTab.object:Destroy()
+
+			SelectTab(RandomSelectTab())
+		end
+	end
+
+	Add.MouseButton1Up:Connect(AddTab)
+	Remove.MouseButton1Up:Connect(RemTab)
+
+	AddTab()
+
+	local Keywords = {
+		"if", "then", "else", "elseif", "end", 
+		"for", "while", "repeat", "until", "function", 
+		"local", "return", "break", "continue", 
+		"true", "false", "nil", "not", "and", "or",
+		"do", "export", "type", "typeof", "self"
+	}
+
+	local builtin = {
+		"print", "pairs", "ipairs", "script", "tostring",
+		"tonumber", "loadstring", "game"
+	}
+
+	local builtintables = {
+		"Vector3", "Vector2", "CFrame", "string", "math",
+		"UDim", "UDim2", "Enum", "Random", "task", "table",
+		"Font", "Color3", "BrickColor", "os", "Instance"
+	}
+
+	local function GetColored(source)
+		local modifiedString = ""
+		local stringword = ""
+		local numberword = ""
+		local builtinword = ""
+		local builtinword2 = ""
+		local specialen = false
+
+		local stringen = false
+
+		local function onelse(word)
+			for i = 1, #word do
+				local char = word:sub(i, i)
+				if char == "\"" then
+					if not specialen then
+						stringen = not stringen
+					end
+				elseif char == "\\" then
+					specialen = not specialen
+				else
+					specialen = false
+				end
+			end
+
+			return string.rep(" ", #word)
+		end
+
+		local function processWord(word)
+			if table.find(Keywords, word) then
+				if stringen then
+					return onelse(word)
+				else
+					return word
+				end
+			elseif string.sub(word, 1, 8) == "function" then
+				if stringen then
+					return onelse(word)
+				else
+					return "function"
+				end
+			elseif word:match("[\n\t]") then
+				if stringen then
+					return onelse(word)
+				else
+					return word
+				end
+			else
+				return onelse(word)
+			end
+		end
+
+		local strspec = false
+		local spespec = false
+
+		local function proccesstring(char)
+
+			local acces = false
+
+			if char == "\"" then
+				if not spespec then
+					strspec = not strspec
+				end
+				acces = true
+			elseif char == "\\" then
+				spespec = not spespec
+			elseif char == "\n" or char == "\t" then
+				return char
+			else
+				spespec = false
+			end
+
+			if strspec or acces then
+				return char
+			end
+			return string.rep(" ", #char)
+		end
+
+		local numbercolorable = true
+
+		local function proccesnumber(char)
+			if char:match("%d") then
+				if not strspec and numbercolorable then
+					return char
+				else
+					return string.rep(" ", #char)
+				end
+			else
+				if char == "\n" or char == "\t" then
+					numbercolorable = true
+					return char
+				elseif char ~= " " then
+					numbercolorable = false
+					return string.rep(" ", #char)
+				else
+					numbercolorable = true
+					return string.rep(" ", #char)
+				end
+			end
+		end
+
+		local function proccesbuiltin(nword)
+			local rword = ""
+			for i, v in ipairs(builtintables) do
+				local word = string.sub(nword, 1, #v)
+				if word == v then
+					if stringen then
+						rword = string.rep(" ", #word)
+					else
+						local gsword = string.gsub(nword, "%.", " ")
+						rword = ""
+						for i = 1, #gsword do
+							local word = string.sub(gsword, i, i)
+							if word == "(" then
+								break
+							elseif word == ";" then
+								break
+							else
+								rword = rword .. word
+							end
+						end
+						break
+					end
+				elseif word:match("[\n\t]") then
+					if stringen then
+						rword = string.rep(" ", #word)
+					else
+						rword = word
+					end
+				else
+					rword = string.rep(" ", #word)
+				end
+			end
+			return rword
+		end
+
+		local detected = false
+		local specialdet = false
+
+		local function stringdetect(word)
+			for i = 1, #word do
+				local char = word:sub(i, i)
+				if char == "\"" then
+					if not specialdet then
+						detected = not detected
+					end
+				elseif char == "\\" then
+					specialdet = not specialdet
+				else
+					specialdet = false
+				end
+			end
+
+			return string.rep(" ", #word)
+		end
+
+		local function proccesbuiltin2(nword)
+			local rword = ""
+			for i, v in ipairs(builtin) do
+				local word = string.sub(nword, 1, #v)
+				if word == v then
+
+					if detected then
+						rword = stringdetect(word)
+					else
+						rword = word
+						break
+					end
+				elseif word:match("[\n\t]") then
+					if detected then
+						rword = stringdetect(word)
+					else
+						rword = word
+					end
+				else
+					rword = stringdetect(word)
+				end
+			end
+			return rword
+		end
+
+		local words = {}
+		local currentWord = ""
+
+		for i = 1, #source do
+			local char = source:sub(i, i)
+
+			if char:match("%s") then
+				if currentWord ~= "" then
+					table.insert(words, currentWord)
+					currentWord = ""
+				end
+				table.insert(words, char)
+			else
+				currentWord = currentWord .. char
+			end
+
+			stringword = stringword .. proccesstring(char)
+			numberword = numberword .. proccesnumber(char)
+		end
+
+		if currentWord ~= "" then
+			table.insert(words, currentWord)
+		end
+
+		for _, word in ipairs(words) do
+			modifiedString = modifiedString .. processWord(word)
+			builtinword2 = builtinword2 .. proccesbuiltin2(word)
+			builtinword = builtinword .. proccesbuiltin(word)
+		end
+
+		return modifiedString, stringword, numberword, builtinword, builtinword2
+	end
+
+	local function Update()
+		if CurrentTab.Deleted == false then
+			Tabs[CurrentTab.position].Source = TextBox.Text
+		end
+
+		local keywc, strc, numc, buic, buic2 = GetColored(TextBox.Text)
+
+		Keyword.Text = keywc
+		String.Text = strc
+		Number.Text = numc
+		builtin.Text = buic
+		builtin2.Text = buic2
+	end
+
+	TextBox:GetPropertyChangedSignal("Text"):Connect(Update)
+	Update()
+
+	A.MouseButton1Up:Connect(function()
+		loadstring(TextBox.Text)()
+	end)
+
+	B.MouseButton1Up:Connect(function()
+		TextBox.Text = ""
+	end)
+
+	local Times = {
+		0.1,
+		0.07,
+		0.1,
+		0.06,
+		0.07,
+		0.11
+	}
+
+	local NextOffsetAdd = 200
+	local MaxFrame = #Times
+	local BottomFrameJoin = 6
+
+	local CurrentFrame = 1
+
+	task.spawn(function()
+		while true do
+			if CurrentFrame < MaxFrame then
+
+				CurrentFrame += 1
+				local x = CurrentFrame - 1
+
+				if CurrentFrame == BottomFrameJoin then
+					Icon.ImageRectOffset = Vector2.new(0, NextOffsetAdd)
+				else
+					Icon.ImageRectOffset = Vector2.new(x * NextOffsetAdd, 0)
+				end
+
+			else
+
+				CurrentFrame = 1
+
+				Icon.ImageRectOffset = Vector2.new(0, 0)
+
+			end
+			wait(Times[CurrentFrame])
+		end
+	end)
+
+	Close.MouseButton1Up:Connect(function()
+		Main.Visible = not Main.Visible
+	end)
+
+	local DargStart = false
+	local Offset = Vector2.new(0, 0)
+
+	local function OnDragStart()
+		while DargStart do
+			Rs.RenderStepped:Wait()
+			local x, y = uis:GetMouseLocation().X, uis:GetMouseLocation().Y
+			Window.Position = Window.Position:Lerp(UDim2.new(0, x - Offset.X, 0, y - Offset.Y), 0.1)
+		end
+	end
+
+	TopBar.InputBegan:Connect(function(inp)
+		if inp.UserInputType == Enum.UserInputType.MouseButton1 then
+			DargStart = true
+
+			local x, y = inp.Position.X, inp.Position.Y
+			Offset = Vector2.new(x - TopBar.AbsolutePosition.X, y - TopBar.AbsolutePosition.Y)
+
+			OnDragStart()
+		end
+	end)
+
+	uis.InputEnded:Connect(function(inp)
+		if inp.UserInputType == Enum.UserInputType.MouseButton1 then
+			DargStart = false
+		end
+	end)
+end
