@@ -8,15 +8,7 @@ local Rs = game:GetService("RunService")
 local uis = game:GetService("UserInputService")
 local CoreGui = game:GetService("CoreGui")
 
--- Script
-
-local Inferno = CoreGui:FindFirstChild("Inferno")
-
-if not Inferno then
-	LoadGuis()
-end
-
-function LoadGuis()
+local function LoadGuis()
 	
 	-- Instances
 	
@@ -816,4 +808,10 @@ function LoadGuis()
 			DargStart = false
 		end
 	end)
+end
+
+local Inferno = CoreGui:FindFirstChild("Inferno")
+
+if not Inferno then
+	LoadGuis()
 end
