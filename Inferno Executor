@@ -59,7 +59,7 @@ local function LoadGuis()
 	Window.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	Window.BorderSizePixel = 0
 	Window.Position = UDim2.new(0, 100, 0, 10)
-	Window.Size = UDim2.new(0, 550, 0, 300)
+	Window.Size = UDim2.new(0, 900, 0, 400)
 
 	TopBar.Name = "TopBar"
 	TopBar.Parent = Window
