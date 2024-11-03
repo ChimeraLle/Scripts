@@ -5410,32 +5410,4 @@ xeno.require = function(ms : ModuleScript)
 	return nil
 end
 
-local cg = game:GetService("CoreGui")
-
-local Gui = game:GetObjects("rbxassetid://113460160812202")[1]
-
-local a = cg:FindFirstChild("Executor")
-if a then
-	a:Destroy()
-end
-
-if Gui then
-	warn("Loaded Asset!")
-
-	Gui.Parent = cg
-
-	local App = Gui:WaitForChild("App")
-	local ms1 = App:WaitForChild("ModuleScript")
-	local Topbar = App:WaitForChild("Topbar")
-	local Tb = Topbar:WaitForChild("TextButton")
-	local ms2 = Tb:WaitForChild("ModuleScript")
-	local Main = App:WaitForChild("Main")
-	local Buttons = Main:WaitForChild("Buttons")
-	local ms3 = Buttons:WaitForChild("ModuleScript")
-
-	xeno.require(ms1)
-	xeno.require(ms2)
-	xeno.require(ms3)
-else
-	warn("Cant Load Asset!")
-end
+return xeno.loadstring
