@@ -105,9 +105,28 @@ lib.CreateToggle({"Orbit", false, function(Boolean)
 	StartOrbit()
 end})
 
+local watching = false
+
+local function setcamera()
+	if watching then
+		local centerPart = GetHeadByUsingName(Target)
+		if centerPart then
+			cam.CameraSubject = centerPart
+		end
+	else
+		cam.CameraSubject = GetHeadByUsingName(mainplr.Name)
+	end
+end
+
+lib.CreateToggle({"Watch Target", false, function(Boolean)
+	watching = Boolean
+	setcamera()
+end})
+
 lib.CreateInput({"Target", function(input)
 	if plrs:FindFirstChild(input) then
 		Target = input
+		setcamera()
 		StartOrbit()
 	else
 		print("Player Doesnt Found!")
@@ -117,6 +136,7 @@ end})
 lib.CreateButton({"Click To Select", function()
 	Selecting = not Selecting
 	OnSelecting()
+	setcamera()
 end})
 
 lib.CreateInput({"Speed (1 is normal)", function(input)
@@ -135,9 +155,80 @@ lib.CreateInput({"Radius (10 is normal)", function(input)
 	end
 end})
 
+lib.CreateTab("rbxassetid://10218885502")
+
+lib.CreateButton({"Effect1", function()
+	local currentradius = orbitRadius
+	for i = 1, 10 do
+		orbitRadius = currentradius * i
+		task.wait(0.1)
+	end
+	orbitRadius = currentradius
+end})
+
+lib.CreateButton({"Effect2", function()
+	local currentradius = orbitRadius
+	local currentspeed = orbitSpeed
+	for i = 20, 1, -1 do
+		orbitRadius = currentradius * i
+		orbitSpeed = currentspeed * i
+		task.wait(0.1)
+	end
+	orbitRadius = currentradius
+	orbitSpeed = currentspeed
+end})
+
+local ef3 = false
+local rever = false
+
+local ef3min = 3
+local ef3max = 6
+
+local function eff3()
+	local currentradius = orbitRadius
+	orbitRadius = 3
+	while ef3 do
+		if not rever then
+			orbitRadius += 1
+			if orbitRadius >= ef3max then
+				rever = true
+			end
+		else
+			orbitRadius -= 1
+			if orbitRadius <= ef3min then
+				rever = false
+			end
+		end
+		task.wait()
+	end
+	orbitRadius = currentradius
+end
+
+lib.CreateToggle({"Effect3", false, function(Boolean)
+	ef3 = Boolean
+	eff3()
+end})
+
+lib.CreateInput({"Effect3 Min", function(input)
+	if tonumber(input) then
+		ef3min = input
+	else
+		print("Type Number not smth")
+	end
+end})
+
+lib.CreateInput({"Effect3 Max", function(input)
+	if tonumber(input) then
+		ef3max = input
+	else
+		print("Type Number not smth")
+	end
+end})
+
 local function OnCharAdded(char)
 
 	mainchar = char
+	setcamera()
 
 	orbitParts = {}
 
