@@ -1,17 +1,20 @@
 if not game:IsLoaded() then
-	game.Loaded:Wait()
+	game.Loaded:Wait()	
 end
 
 -- Services
 
 local Rs = game:GetService("RunService")
 local uis = game:GetService("UserInputService")
+local Rrs = game:GetService("ReplicatedStorage")
 local CoreGui = game:GetService("CoreGui")
 
-local function LoadGuis()
-	
+-- Scripts
+
+local function loadgui()
+
 	-- Instances
-	
+
 	local ScreenGui = Instance.new("ScreenGui")
 	local Window = Instance.new("Frame")
 	local TopBar = Instance.new("Frame")
@@ -21,14 +24,7 @@ local function LoadGuis()
 	local Close = Instance.new("TextButton")
 	local UIPadding_2 = Instance.new("UIPadding")
 	local Main = Instance.new("Frame")
-	local ScrollingFrame = Instance.new("ScrollingFrame")
-	local TextBox = Instance.new("TextBox")
-	local UIPadding_3 = Instance.new("UIPadding")
-	local Keyword = Instance.new("TextLabel")
-	local Number = Instance.new("TextLabel")
-	local String = Instance.new("TextLabel")
-	local builtin = Instance.new("TextLabel")
-	local builtin2 = Instance.new("TextLabel")
+	local Editor = Instance.new("Frame")
 	local Buttons = Instance.new("Frame")
 	local B = Instance.new("TextButton")
 	local UIPadding_4 = Instance.new("UIPadding")
@@ -59,7 +55,7 @@ local function LoadGuis()
 	Window.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	Window.BorderSizePixel = 0
 	Window.Position = UDim2.new(0, 100, 0, 10)
-	Window.Size = UDim2.new(0, 900, 0, 400)
+	Window.Size = UDim2.new(0, 550, 0, 300)
 
 	TopBar.Name = "TopBar"
 	TopBar.Parent = Window
@@ -126,113 +122,21 @@ local function LoadGuis()
 	Main.BorderSizePixel = 0
 	Main.Position = UDim2.new(0, 0, 0, 40)
 	Main.Size = UDim2.new(1, 0, 1, -40)
+
+	Editor.Name = "Editor"
+	Editor.Parent = Main
+	Editor.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+	Editor.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	Editor.BorderSizePixel = 0
+	Editor.Position = UDim2.new(0, 10, 0, 45)
+	Editor.Size = UDim2.new(1, -20, 1, -90)
 	
-	ScrollingFrame.Parent = Main
-	ScrollingFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-	ScrollingFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	ScrollingFrame.BorderSizePixel = 0
-	ScrollingFrame.Position = UDim2.new(0, 10, 0, 45)
-	ScrollingFrame.Size = UDim2.new(1, -20, 1, -90)
-	ScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
-	ScrollingFrame.AutomaticCanvasSize = Enum.AutomaticSize.XY
-	ScrollingFrame.ScrollBarThickness = 18
-	ScrollingFrame.BottomImage = ScrollingFrame.MidImage
-	ScrollingFrame.TopImage = ScrollingFrame.MidImage
+	local Ms = game:GetObjects("rbxassetid://18695604258")[1]
+	Ms.Parent = Main
 
-	TextBox.Parent = ScrollingFrame
-	TextBox.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-	TextBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	TextBox.BorderSizePixel = 0
-	TextBox.Position = UDim2.new(0, 0, 0, 0)
-	TextBox.Size = UDim2.new(1, 0, 1, 0)
-	TextBox.ClearTextOnFocus = false
-	TextBox.Font = Enum.Font.Code
-	TextBox.MultiLine = true
-	TextBox.PlaceholderColor3 = Color3.fromRGB(204, 204, 204)
-	TextBox.Text = ""
-	TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
-	TextBox.TextSize = 18.000
-	TextBox.TextWrapped = true
-	TextBox.TextXAlignment = Enum.TextXAlignment.Left
-	TextBox.TextYAlignment = Enum.TextYAlignment.Top
-	TextBox.AutomaticSize = Enum.AutomaticSize.XY
+	local Ode = require(Ms)
 
-	UIPadding_3.Parent = TextBox
-	UIPadding_3.PaddingBottom = UDim.new(0, 5)
-	UIPadding_3.PaddingLeft = UDim.new(0, 10)
-	UIPadding_3.PaddingRight = UDim.new(0, 10)
-	UIPadding_3.PaddingTop = UDim.new(0, 5)
-
-	Keyword.Name = "Keyword"
-	Keyword.Parent = TextBox
-	Keyword.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	Keyword.BackgroundTransparency = 1.000
-	Keyword.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	Keyword.BorderSizePixel = 0
-	Keyword.Size = UDim2.new(1, 0, 1, 0)
-	Keyword.Font = Enum.Font.Code
-	Keyword.Text = ""
-	Keyword.TextColor3 = Color3.fromRGB(248, 109, 124)
-	Keyword.TextSize = 18.000
-	Keyword.TextXAlignment = Enum.TextXAlignment.Left
-	Keyword.TextYAlignment = Enum.TextYAlignment.Top
-
-	Number.Name = "Number"
-	Number.Parent = TextBox
-	Number.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	Number.BackgroundTransparency = 1.000
-	Number.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	Number.BorderSizePixel = 0
-	Number.Size = UDim2.new(1, 0, 1, 0)
-	Number.ZIndex = 2
-	Number.Font = Enum.Font.Code
-	Number.Text = ""
-	Number.TextColor3 = Color3.fromRGB(255, 198, 0)
-	Number.TextSize = 18.000
-	Number.TextXAlignment = Enum.TextXAlignment.Left
-	Number.TextYAlignment = Enum.TextYAlignment.Top
-
-	String.Name = "String"
-	String.Parent = TextBox
-	String.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	String.BackgroundTransparency = 1.000
-	String.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	String.BorderSizePixel = 0
-	String.Size = UDim2.new(1, 0, 1, 0)
-	String.Font = Enum.Font.Code
-	String.Text = ""
-	String.TextColor3 = Color3.fromRGB(173, 241, 149)
-	String.TextSize = 18.000
-	String.TextXAlignment = Enum.TextXAlignment.Left
-	String.TextYAlignment = Enum.TextYAlignment.Top
-
-	builtin.Name = "builtin"
-	builtin.Parent = TextBox
-	builtin.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	builtin.BackgroundTransparency = 1.000
-	builtin.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	builtin.BorderSizePixel = 0
-	builtin.Size = UDim2.new(1, 0, 1, 0)
-	builtin.Font = Enum.Font.Code
-	builtin.Text = ""
-	builtin.TextColor3 = Color3.fromRGB(132, 214, 247)
-	builtin.TextSize = 18.000
-	builtin.TextXAlignment = Enum.TextXAlignment.Left
-	builtin.TextYAlignment = Enum.TextYAlignment.Top
-
-	builtin2.Name = "builtin2"
-	builtin2.Parent = TextBox
-	builtin2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	builtin2.BackgroundTransparency = 1.000
-	builtin2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	builtin2.BorderSizePixel = 0
-	builtin2.Size = UDim2.new(1, 0, 1, 0)
-	builtin2.Font = Enum.Font.Code
-	builtin2.Text = ""
-	builtin2.TextColor3 = Color3.fromRGB(132, 214, 247)
-	builtin2.TextSize = 18.000
-	builtin2.TextXAlignment = Enum.TextXAlignment.Left
-	builtin2.TextYAlignment = Enum.TextYAlignment.Top
+	local scriptEditor = Ode.Embed(Editor)
 
 	Buttons.Name = "Buttons"
 	Buttons.Parent = Main
@@ -373,6 +277,14 @@ local function LoadGuis()
 
 	-- Script
 
+	local function Set(str)
+		scriptEditor:LoadStringAsync(str)
+	end
+
+	local function Get()
+		return scriptEditor.RawSource
+	end
+
 	local function GetName(num)
 		if num then
 			local length = #tostring(num)
@@ -424,9 +336,9 @@ local function LoadGuis()
 					v.object.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 					CurrentTab = v
 					if CurrentTab.Source ~= "" then
-						TextBox.Text = CurrentTab.Source
+						Set(CurrentTab.Source)
 					else
-						TextBox.Text = "print(\"Hello world!\")"
+						Set("print(\"Hello world!\")")
 					end
 				else
 					v.object.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
@@ -439,7 +351,7 @@ local function LoadGuis()
 
 		if CurrentTab then
 			if CurrentTab.Deleted == false then
-				Tabs[CurrentTab.position].source = TextBox.Text
+				Tabs[CurrentTab.position].source = Get()
 			end
 		end
 
@@ -481,261 +393,21 @@ local function LoadGuis()
 
 	AddTab()
 
-	local Keywords = {
-		"if", "then", "else", "elseif", "end", 
-		"for", "while", "repeat", "until", "function", 
-		"local", "return", "break", "continue", 
-		"true", "false", "nil", "not", "and", "or",
-		"do", "export", "type", "typeof", "self"
-	}
-
-	local builtin = {
-		"print", "pairs", "ipairs", "script", "tostring",
-		"tonumber", "loadstring", "game"
-	}
-
-	local builtintables = {
-		"Vector3", "Vector2", "CFrame", "string", "math",
-		"UDim", "UDim2", "Enum", "Random", "task", "table",
-		"Font", "Color3", "BrickColor", "os", "Instance"
-	}
-
-	local function GetColored(source)
-		local modifiedString = ""
-		local stringword = ""
-		local numberword = ""
-		local builtinword = ""
-		local builtinword2 = ""
-		local specialen = false
-
-		local stringen = false
-
-		local function onelse(word)
-			for i = 1, #word do
-				local char = word:sub(i, i)
-				if char == "\"" then
-					if not specialen then
-						stringen = not stringen
-					end
-				elseif char == "\\" then
-					specialen = not specialen
-				else
-					specialen = false
-				end
-			end
-
-			return string.rep(" ", #word)
-		end
-
-		local function processWord(word)
-			if table.find(Keywords, word) then
-				if stringen then
-					return onelse(word)
-				else
-					return word
-				end
-			elseif string.sub(word, 1, 8) == "function" then
-				if stringen then
-					return onelse(word)
-				else
-					return "function"
-				end
-			elseif word:match("[\n\t]") then
-				if stringen then
-					return onelse(word)
-				else
-					return word
-				end
-			else
-				return onelse(word)
-			end
-		end
-
-		local strspec = false
-		local spespec = false
-
-		local function proccesstring(char)
-
-			local acces = false
-
-			if char == "\"" then
-				if not spespec then
-					strspec = not strspec
-				end
-				acces = true
-			elseif char == "\\" then
-				spespec = not spespec
-			elseif char == "\n" or char == "\t" then
-				return char
-			else
-				spespec = false
-			end
-
-			if strspec or acces then
-				return char
-			end
-			return string.rep(" ", #char)
-		end
-
-		local numbercolorable = true
-
-		local function proccesnumber(char)
-			if char:match("%d") then
-				if not strspec and numbercolorable then
-					return char
-				else
-					return string.rep(" ", #char)
-				end
-			else
-				if char == "\n" or char == "\t" then
-					numbercolorable = true
-					return char
-				elseif char ~= " " then
-					numbercolorable = false
-					return string.rep(" ", #char)
-				else
-					numbercolorable = true
-					return string.rep(" ", #char)
-				end
-			end
-		end
-
-		local function proccesbuiltin(nword)
-			local rword = ""
-			for i, v in ipairs(builtintables) do
-				local word = string.sub(nword, 1, #v)
-				if word == v then
-					if stringen then
-						rword = string.rep(" ", #word)
-					else
-						local gsword = string.gsub(nword, "%.", " ")
-						rword = ""
-						for i = 1, #gsword do
-							local word = string.sub(gsword, i, i)
-							if word == "(" then
-								break
-							elseif word == ";" then
-								break
-							else
-								rword = rword .. word
-							end
-						end
-						break
-					end
-				elseif word:match("[\n\t]") then
-					if stringen then
-						rword = string.rep(" ", #word)
-					else
-						rword = word
-					end
-				else
-					rword = string.rep(" ", #word)
-				end
-			end
-			return rword
-		end
-
-		local detected = false
-		local specialdet = false
-
-		local function stringdetect(word)
-			for i = 1, #word do
-				local char = word:sub(i, i)
-				if char == "\"" then
-					if not specialdet then
-						detected = not detected
-					end
-				elseif char == "\\" then
-					specialdet = not specialdet
-				else
-					specialdet = false
-				end
-			end
-
-			return string.rep(" ", #word)
-		end
-
-		local function proccesbuiltin2(nword)
-			local rword = ""
-			for i, v in ipairs(builtin) do
-				local word = string.sub(nword, 1, #v)
-				if word == v then
-
-					if detected then
-						rword = stringdetect(word)
-					else
-						rword = word
-						break
-					end
-				elseif word:match("[\n\t]") then
-					if detected then
-						rword = stringdetect(word)
-					else
-						rword = word
-					end
-				else
-					rword = stringdetect(word)
-				end
-			end
-			return rword
-		end
-
-		local words = {}
-		local currentWord = ""
-
-		for i = 1, #source do
-			local char = source:sub(i, i)
-
-			if char:match("%s") then
-				if currentWord ~= "" then
-					table.insert(words, currentWord)
-					currentWord = ""
-				end
-				table.insert(words, char)
-			else
-				currentWord = currentWord .. char
-			end
-
-			stringword = stringword .. proccesstring(char)
-			numberword = numberword .. proccesnumber(char)
-		end
-
-		if currentWord ~= "" then
-			table.insert(words, currentWord)
-		end
-
-		for _, word in ipairs(words) do
-			modifiedString = modifiedString .. processWord(word)
-			builtinword2 = builtinword2 .. proccesbuiltin2(word)
-			builtinword = builtinword .. proccesbuiltin(word)
-		end
-
-		return modifiedString, stringword, numberword, builtinword, builtinword2
-	end
-
 	local function Update()
 		if CurrentTab.Deleted == false then
-			Tabs[CurrentTab.position].Source = TextBox.Text
+			Tabs[CurrentTab.position].Source = Get()
 		end
-
-		local keywc, strc, numc, buic, buic2 = GetColored(TextBox.Text)
-
-		Keyword.Text = keywc
-		String.Text = strc
-		Number.Text = numc
-		builtin.Text = buic
-		builtin2.Text = buic2
 	end
 
-	TextBox:GetPropertyChangedSignal("Text"):Connect(Update)
+	scriptEditor.OnEdit:Connect(Update)
 	Update()
 
 	A.MouseButton1Up:Connect(function()
-		loadstring(TextBox.Text)()
+		loadstring(Get())()
 	end)
 
 	B.MouseButton1Up:Connect(function()
-		TextBox.Text = ""
+		Set("")
 	end)
 
 	local Times = {
@@ -810,8 +482,11 @@ local function LoadGuis()
 	end)
 end
 
-local Inferno = CoreGui:FindFirstChild("Inferno")
+local InfernoRRS = Rrs:FindFirstChild("Inferno")
 
-if not Inferno then
-	LoadGuis()
+if not InfernoRRS then
+	InfernoRRS = Instance.new("Folder", Rrs)
+	InfernoRRS.Name = "Inferno"
+
+	loadgui()
 end
